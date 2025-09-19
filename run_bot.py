@@ -27,10 +27,20 @@ if __name__ == "__main__":
             print(f"🔧 python-telegram-bot version: {ptb_version}")
         except Exception:
             print("🔧 python-telegram-bot version: unknown")
+
+        try:
+            import telegram
+            import telegram.ext as tgext
+            from telegram.ext import Updater as _Updater
+            print(f"📦 telegram module: {getattr(telegram, '__file__', 'unknown')}")
+            print(f"📦 telegram.ext module: {getattr(tgext, '__file__', 'unknown')}")
+            print(f"📦 Updater class module: {getattr(_Updater, '__module__', 'unknown')}")
+            print(f"📦 Updater class dict/slots: has __dict__? {hasattr(_Updater, '__dict__')} | has __slots__? {hasattr(_Updater, '__slots__')}")
+        except Exception as diag_e:
+            print(f"📦 telegram diagnostics failed: {diag_e}")
         run_bot()
     except KeyboardInterrupt:
         print("\n👋 Bot stopped by user")
     except Exception as e:
         print(f"\n❌ Error: {e}")
         sys.exit(1)
-
