@@ -6,6 +6,7 @@ import sys
 import os
 import asyncio
 import logging
+import importlib.metadata
 
 # Add src to path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'src'))
@@ -21,9 +22,15 @@ if __name__ == "__main__":
     print("=" * 60)
     
     try:
+        try:
+            ptb_version = importlib.metadata.version("python-telegram-bot")
+            print(f"🔧 python-telegram-bot version: {ptb_version}")
+        except Exception:
+            print("🔧 python-telegram-bot version: unknown")
         run_bot()
     except KeyboardInterrupt:
         print("\n👋 Bot stopped by user")
     except Exception as e:
         print(f"\n❌ Error: {e}")
         sys.exit(1)
+
