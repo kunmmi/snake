@@ -3,7 +3,7 @@ services:
       name: beartech-bot
       env: python
       plan: free
-      buildCommand: pip install --no-cache-dir -r requirements.txt
+      buildCommand: pip uninstall -y telegram telebot pyTelegramBotAPI python-telegram-bot || true && pip install --upgrade --no-cache-dir -r requirements.txt
       startCommand: python start_production.py
       envVars:
           - key: TELEGRAM_BOT_TOKEN
